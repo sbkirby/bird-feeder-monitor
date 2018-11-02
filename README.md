@@ -62,9 +62,9 @@ The location ID in the 'getastonomy.py' python script needs to be modified to in
 
 Enter your location, and your location ID will appear as part of the URL address. Replace the USTX0905 in the line of the script with your location ID.
 
-'
+```
 result = pywapi.get_weather_from_yahoo('USTX0905','imperial')
-'
+```
 
 This will allow the script to fetch the sunrise and sunset for your location. Instructions for modifying 'sendgdocs.py' are located in Step 6.
 
@@ -92,15 +92,15 @@ In order to send data a Google Docs spreadsheet, you must first create a Form wi
 ![PushingBox Services](https://github.com/sbkirby/bird-feeder-monitor/blob/master/images/PushingBox-Services.jpg)
 
 Make a note of the url address of the Form you created previously (while viewing the completed form), and copy that address. It should look similar to this address:
-'
+```
 https://docs.google.com/forms/d/42QRHPzZzI4fdMZdC4...EbF8juE/viewform
-'
+```
 This address is used to create your PushingBox Service, except that it must end with '/formResponse' instead of '/viewform'. Finally, be sure to change the Method used by the Service to POST.
 
 Creating a Scenario in PushingBox will require the data gathered previously from the form for each of the input fields. Create a CustomURL type Scenario as seen in the photo above. It should look similar to this:
-'
+```
 entry.184762354=$cnt1$&entry.1970438117=$ti...6352124=$cnt6$&entry.54370319=$time6$&&submit=Submit
-'
+```
 Each entry should match the 'cnt' and 'time' fields of your form. End the string on fields with '&&submit=Submit' as seen above.
 
 The Device ID created with your Scenario will be needed in the 'sendgdocs.py' python script in order to transmit data to Google Docs via PushingBox.
