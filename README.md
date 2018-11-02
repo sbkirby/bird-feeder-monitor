@@ -62,8 +62,58 @@ The location ID in the 'getastonomy.py' python script needs to be modified to in
 
 Enter your location, and your location ID will appear as part of the URL address. Replace the USTX0905 in the line of the script with your location ID.
 
+'
 result = pywapi.get_weather_from_yahoo('USTX0905','imperial')
+'
 
 This will allow the script to fetch the sunrise and sunset for your location. Instructions for modifying 'sendgdocs.py' are located in Step 6.
 
 Once both scripts have been modified you must move them onto the micro-SD card directory '/mnt/sda1/' of the Arduino Yun.
+
+## Wiring the Bird Feeder
+![Top View](https://github.com/sbkirby/bird-feeder-monitor/blob/master/images/top-view-of-copper-tape-on-feeder.jpg)
+![Bottom View](https://github.com/sbkirby/bird-feeder-monitor/blob/master/images/bird-feeder-bottom.jpg)
+
+Each of the perches on the feeder was covered with 1/4" wide self adhesive copper foil tape. A small hole was drilled through the tape and perch, and a wire was soldered to the foil tape and routed beneath the feeder.
+
+Note: With the bird feeder shown above, I recommend a gap between the ends of each foil stripe of 1 1/4" - 1 1/2". I discovered that the larger birds, such as grackles and doves, are capable of touching two foil strips at the same time if they are placed to close together.
+
+A block of wood was shaped and glued to the bottom of the feeder to provide a level area to mount the Project Box containing the CAP1188. Velcro tape was applied to the Project Box as well as the wooden block to provide a means of attaching.
+
+In order to refill the bird feeder, I unplug the power inside the garage. Next, I disconnect the DB-9 connector from the Project Box attached to the bottom of the feeder, which allows me to lift the feeder off the pipe with the Project Box still connected to the bottom. Once the feeder has been refilled, I place it back on the pipe stand; connect the DB-9 cable; and plug in the power.
+
+## Creating a Google Doc Form
+![Google Doc Form](https://github.com/sbkirby/bird-feeder-monitor/blob/master/images/Google-Docs.jpg)
+
+In order to send data a Google Docs spreadsheet, you must first create a Form with all of the required fields. In my example, I have six 'cnt' fields and six 'time' fields that are integer input. For example, the fields are named 'cnt1', 'time1', 'cnt2', 'time2', etc. Once your finished with the Form, you click "View live form" to see the finished form. While viewing the Form, right click the page and select "View page source". Search and find all of the HTML "input" fields in the source code. Make a note of the name for each of the fields you entered on the form. This information is needed to create your Scenario in PushingBox.
+
+## Configuring PushingBox
+![PushingBox Scenario](https://github.com/sbkirby/bird-feeder-monitor/blob/master/images/PushingBox-Scenario.jpg)
+![PushingBox Services](https://github.com/sbkirby/bird-feeder-monitor/blob/master/images/PushingBox-Services.jpg)
+
+Make a note of the url address of the Form you created previously (while viewing the completed form), and copy that address. It should look similar to this address:
+'
+https://docs.google.com/forms/d/42QRHPzZzI4fdMZdC4...EbF8juE/viewform
+'
+This address is used to create your PushingBox Service, except that it must end with '/formResponse' instead of '/viewform'. Finally, be sure to change the Method used by the Service to POST.
+
+Creating a Scenario in PushingBox will require the data gathered previously from the form for each of the input fields. Create a CustomURL type Scenario as seen in the photo above. It should look similar to this:
+'
+entry.184762354=$cnt1$&entry.1970438117=$ti...6352124=$cnt6$&entry.54370319=$time6$&&submit=Submit
+'
+Each entry should match the 'cnt' and 'time' fields of your form. End the string on fields with '&&submit=Submit' as seen above.
+
+The Device ID created with your Scenario will be needed in the 'sendgdocs.py' python script in order to transmit data to Google Docs via PushingBox.
+
+## The Data
+![Graph Avg Count per Day](https://github.com/sbkirby/bird-feeder-monitor/blob/master/images/graph-average-time-per-count.jpg)
+![Graph Total Count](https://github.com/sbkirby/bird-feeder-monitor/blob/master/images/graph-total-count.jpg)
+
+This program is currently configured to gather and send data to Google Docs every 20 minutes. That interval can be easily modified within the sketch
+
+The data sent is the "count" of the number of times a bird (or some other object) touches the copper foil on the perch. It also sends the total amount of time (seconds) a bird touched the sensor while feeding.
+
+I've experienced varying results. It all depends on the feed I'm providing, and the birds that are in the area. If the grackles are in the area, they can empty the bird feeder in sort order. They're able to scatter the feed with their beaks everywhere very quickly.
+
+I have two bird feeders, but only one has the monitor attached. Therefore, my data indicates that I receive between 1,000 to 1,400 counts between refills, and the capacity of the feeder is 6 lbs. However, some of those counts are double counts as result of birds straddling more than one perch. In any case, it has been fun watching the feeder, and examining the data.
+
