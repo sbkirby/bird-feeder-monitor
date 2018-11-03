@@ -22,7 +22,7 @@ These are a list of the parts that I used to assemble my project. You could use 
 10. 1 Tail Light connector from automotive supply store
 
 ## Wiring
-![Wiring Diagram](https://github.com/sbkirby/bird_feeder_monitor_yun/blob/master/images/bird-feeder-project_bb.jpg)
+![Wiring Diagram](https://github.com/sbkirby/bird_feeder_monitor_yun/blob/master/images/wiring_diagram_cap1188_yun.jpg)
 
 The Arduino Yun and the CAP1188 are wired to provide a hard reset of sensor at startup. There are other capacitive touch sensors available with either one, five or eight sensors. I chose eight because my bird feeder has six sides.
 
