@@ -1,12 +1,12 @@
 # Bird Feeder Monitor - with Arduino Yun
-![Bird Feeder Monitor](https://github.com/sbkirby/bird-feeder-monitor/blob/master/images/main-bird-feeder-image.jpg) 
+![Bird Feeder Monitor](https://github.com/sbkirby/bird_feeder_monitor_yun/blob/master/images/main-bird-feeder-image.jpg) 
 
 This is a project to monitor the number of birds that visit my bird feeder, as well as record the amount of time spent feeding. I used an Arduino Yún and a capacitive touch sensor, Adafruit CAP1188, to detect and record the birds feeding. On a routine basis, the accumulated data is sent to a Google Docs spreadsheet to record the number and time spent by the birds visiting the feeder.
 
 Data is only transmitted during a set period of time prior to sunrise and after sunset.
 
 ## Parts
-![Project Enclosure](https://github.com/sbkirby/bird-feeder-monitor/blob/master/images/Project-enclosurest.jpg)
+![Project Enclosure](https://github.com/sbkirby/bird_feeder_monitor_yun/blob/master/images/Project-enclosurest.jpg)
 
 These are a list of the parts that I used to assemble my project. You could use a variety of project boxes to create your project, but these are the items I had on hand at the time.
 
@@ -22,7 +22,7 @@ These are a list of the parts that I used to assemble my project. You could use 
 10. 1 Tail Light connector from automotive supply store
 
 ## Wiring
-![Wiring Diagram](https://github.com/sbkirby/bird-feeder-monitor/blob/master/images/bird-feeder-project_bb.jpg)
+![Wiring Diagram](https://github.com/sbkirby/bird_feeder_monitor_yun/blob/master/images/bird-feeder-project_bb.jpg)
 
 The Arduino Yun and the CAP1188 are wired to provide a hard reset of sensor at startup. There are other capacitive touch sensors available with either one, five or eight sensors. I chose eight because my bird feeder has six sides.
 
@@ -71,8 +71,8 @@ This will allow the script to fetch the sunrise and sunset for your location. In
 Once both scripts have been modified you must move them onto the micro-SD card directory '/mnt/sda1/' of the Arduino Yun.
 
 ## Wiring the Bird Feeder
-![Top View](https://github.com/sbkirby/bird-feeder-monitor/blob/master/images/top-view-of-copper-tape-on-feeder.jpg)
-![Bottom View](https://github.com/sbkirby/bird-feeder-monitor/blob/master/images/bird-feeder-bottom.jpg)
+![Top View](https://github.com/sbkirby/bird_feeder_monitor_yun/blob/master/images/top-view-of-copper-tape-on-feeder.jpg)
+![Bottom View](https://github.com/sbkirby/bird_feeder_monitor_yun/blob/master/images/bird-feeder-bottom.jpg)
 
 Each of the perches on the feeder was covered with 1/4" wide self adhesive copper foil tape. A small hole was drilled through the tape and perch, and a wire was soldered to the foil tape and routed beneath the feeder.
 
@@ -83,13 +83,13 @@ A block of wood was shaped and glued to the bottom of the feeder to provide a le
 In order to refill the bird feeder, I unplug the power inside the garage. Next, I disconnect the DB-9 connector from the Project Box attached to the bottom of the feeder, which allows me to lift the feeder off the pipe with the Project Box still connected to the bottom. Once the feeder has been refilled, I place it back on the pipe stand; connect the DB-9 cable; and plug in the power.
 
 ## Creating a Google Doc Form
-![Google Doc Form](https://github.com/sbkirby/bird-feeder-monitor/blob/master/images/Google-Docs.jpg)
+![Google Doc Form](https://github.com/sbkirby/bird_feeder_monitor_yun/blob/master/images/Google-Docs.jpg)
 
 In order to send data a Google Docs spreadsheet, you must first create a Form with all of the required fields. In my example, I have six 'cnt' fields and six 'time' fields that are integer input. For example, the fields are named 'cnt1', 'time1', 'cnt2', 'time2', etc. Once your finished with the Form, you click "View live form" to see the finished form. While viewing the Form, right click the page and select "View page source". Search and find all of the HTML "input" fields in the source code. Make a note of the name for each of the fields you entered on the form. This information is needed to create your Scenario in PushingBox.
 
 ## Configuring PushingBox
-![PushingBox Scenario](https://github.com/sbkirby/bird-feeder-monitor/blob/master/images/PushingBox-Scenario.jpg)
-![PushingBox Services](https://github.com/sbkirby/bird-feeder-monitor/blob/master/images/PushingBox-Services.jpg)
+![PushingBox Scenario](https://github.com/sbkirby/bird_feeder_monitor_yun/blob/master/images/PushingBox-Scenario.jpg)
+![PushingBox Services](https://github.com/sbkirby/bird_feeder_monitor_yun/blob/master/images/PushingBox-Services.jpg)
 
 Make a note of the url address of the Form you created previously (while viewing the completed form), and copy that address. It should look similar to this address:
 ```
@@ -106,8 +106,8 @@ Each entry should match the 'cnt' and 'time' fields of your form. End the string
 The Device ID created with your Scenario will be needed in the 'sendgdocs.py' python script in order to transmit data to Google Docs via PushingBox.
 
 ## The Data
-![Graph Avg Count per Day](https://github.com/sbkirby/bird-feeder-monitor/blob/master/images/graph-average-time-per-count.jpg)
-![Graph Total Count](https://github.com/sbkirby/bird-feeder-monitor/blob/master/images/graph-total-count.jpg)
+![Graph Avg Count per Day](https://github.com/sbkirby/bird_feeder_monitor_yun/blob/master/images/graph-average-time-per-count.jpg)
+![Graph Total Count](https://github.com/sbkirby/bird_feeder_monitor_yun/blob/master/images/graph-total-count.jpg)
 
 This program is currently configured to gather and send data to Google Docs every 20 minutes. That interval can be easily modified within the sketch
 
