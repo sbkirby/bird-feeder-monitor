@@ -58,12 +58,12 @@ Instructions for installing this library is located at the above website.
 ### Python Scripts
 The location ID in the 'getastonomy.py' python script needs to be modified to include your location. It is currently configured for Missouri City, Texas. One way to find your ID is to go to the following website:
 
-[http://www.intellicast.com/](http://www.intellicast.com/)
+[Weather Location Codes](https://weather.codes/)
 
-Enter your location, and your location ID will appear as part of the URL address. Replace the USTX0905 in the line of the script with your location ID.
+Enter your location, and your location ID will appear as part of the URL address. Replace the USTX1312 in the line of the script with your location ID.
 
 ```
-result = pywapi.get_weather_from_yahoo('USTX0905','imperial')
+result = pywapi.get_weather_from_weather_com('USTX1312','imperial')
 ```
 
 This will allow the script to fetch the sunrise and sunset for your location. Instructions for modifying 'sendgdocs.py' are located in Step 6.
