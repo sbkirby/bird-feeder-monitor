@@ -18,11 +18,10 @@
 # python-weather-api
 # pywapi - https://code.google.com/p/python-weather-api/
 
-# replace 'USTX0905' with your own location_id unless your interested in
-# the sunrise and sunset in Missouri City, TX.
-# One spot to find your location_id is to find your location at Intellicast
-# http://www.intellicast.com/.  The location_id will be part of the url.
-# This doesn't seem to work at Yahoo! weather for reasons unknown.
+# replace 'USTX1312' with your own location_id unless your interested in
+# the sunrise and sunset in Sugar Land, TX.
+# One spot to find your location_id to use with weather.com is
+# https://weather.codes/ The location_id will be part of the url.
 
 import pywapi
 
@@ -42,9 +41,9 @@ def minutes(h, m, ampm):
        t = t + 720
     return str(t)
 
-result = pywapi.get_weather_from_yahoo('USTX0905','imperial')
-AM =  piece(result['astronomy']['sunrise'],(':',' am'))
+result = pywapi.get_weather_from_weather_com('USTX1312','imperial')
+AM =  piece(result['forecasts'][0]['sunrise'],(':',' AM'))
 sunrise = minutes(AM[0],AM[1],0)
-PM = piece(result['astronomy']['sunset'],(':',' pm'))
+PM = piece(result['forecasts'][0]['sunset'],(':',' PM'))
 sunset = minutes(PM[0],PM[1],1)
 print(sunrise + '^' + sunset)
